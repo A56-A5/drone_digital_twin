@@ -44,7 +44,7 @@ class Drone:
             drain += self.battery * 0.01
 
         if climbing and self.altitude > 50:
-            drain += self.battery * 0.005
+            drain += self.battery * 0.04
 
         self.battery = max(0, self.battery - drain)
         return drain
@@ -53,6 +53,8 @@ class Drone:
         wind_rad = weather['wind_direction'] * (math.pi / 180)
         wind_dx = weather['wind_speed'] * 0.1 * math.cos(wind_rad)
         wind_dy = weather['wind_speed'] * 0.1 * math.sin(wind_rad)
+        
         self.x += wind_dx
         self.y += wind_dy
+
         return wind_dx, wind_dy
